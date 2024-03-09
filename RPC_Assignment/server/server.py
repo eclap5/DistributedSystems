@@ -1,7 +1,6 @@
 import xmlrpc.server
 import xml.etree.ElementTree as ET
 import datetime
-import requests
 
 class NotebookServer:
     def __init__(self) -> None:
