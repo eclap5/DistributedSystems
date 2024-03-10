@@ -1,0 +1,12 @@
+<notebook>
+    <topic name="Birds">
+        <note name="Bird">
+            <text>this is eagle</text>
+            <timestamp>2024-03-10 14:29:50</timestamp>
+        </note>
+        <note name="Link to Wikipedia">
+            <text>https://en.wikipedia.org/wiki/Eagle</text>
+            <timestamp>2024-03-10 14:30:14</timestamp>
+        </note>
+    </topic>
+</notebook>

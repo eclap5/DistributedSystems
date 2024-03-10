@@ -8,13 +8,13 @@ class NotebookClient:
             print('Server not running')
             exit(1)
 
-    def addNote(self, topic, noteName, noteText):
+    def addNote(self):
         topic = input('Enter topic: ')
         noteName = input('Enter note name: ')
         noteText = input('Enter note text: ')
         print(self.server.addNote(topic, noteName, noteText))
 
-    def getNotes(self, topic):
+    def getNotes(self):
         topic = input('Enter topic: ')
         notes = self.server.getNotes(topic)
         for note in notes:
@@ -23,14 +23,14 @@ class NotebookClient:
             print(f"Note: {note['text']}")
             print(f"Time: {note['timestamp']}")
     
-    def searchWikipedia():
+    def searchWikipedia(self):
         searchTerm = input('Enter search term: ')
         topic = input('Enter topic for data to be added: ')
-        data = client.server.getWikipediaData(searchTerm)
+        data = self.server.getWikipediaData(searchTerm)
         if len(data) == 0:
             print('No data found')
         else:
-            print(client.add(topic, 'Link to Wikipedia', data[3][0]))
+            print(self.server.addNote(topic, 'Link to Wikipedia', data[3][0]))
     
 if __name__ == '__main__':
     client = NotebookClient()
