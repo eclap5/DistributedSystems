@@ -1,3 +1,6 @@
+# Used help from the tutorial video series: https://www.youtube.com/playlist?list=PLIw91yhFTTdJ2CDjOptoF-ddXbw7wmet-
+# in basic features of the server and client side.
+
 import datetime
 import socket
 import threading
@@ -10,6 +13,7 @@ SERVER_LIMIT = 8
 active_users = []
 sessions = []
 
+# Listen messages for global chat
 def listen_messages_all(client, username):
     while True:
         try:
@@ -29,6 +33,7 @@ def listen_messages_all(client, username):
             break
 
 
+# Listen messages for private chat
 def listen_messages_private(client, username, receiver):
     while True:
         try:
@@ -49,15 +54,18 @@ def listen_messages_private(client, username, receiver):
             break
 
 
+# Send message to a single user
 def send_message_to_user(client, message):
     client.sendall(message.encode('utf-8'))
 
 
+# Send message to all users
 def send_message_to_all(message):
     for user in active_users:
         send_message_to_user(user[1], message)
 
 
+# Handle client connection and user initialization
 def handle_client(client):
     while True:
         response = client.recv(2048).decode('utf-8')
@@ -83,6 +91,7 @@ def handle_client(client):
             print('Username cannot be empty. Please try again.')
 
 
+# Create private chat session
 def private_chat(client, username):
     while True:
         receiver = client.recv(2048).decode('utf-8')
@@ -101,6 +110,7 @@ def private_chat(client, username):
     threading.Thread(target=listen_messages_private, args=(client, username, client_2)).start()
 
 
+# Disconnect user from the server
 def disconnect_user(client):
     client.close()
     active_users.remove(client)

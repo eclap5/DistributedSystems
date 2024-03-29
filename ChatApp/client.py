@@ -1,3 +1,6 @@
+# Used help from the tutorial video series: https://www.youtube.com/playlist?list=PLIw91yhFTTdJ2CDjOptoF-ddXbw7wmet-
+# in basic features of the server and client side.
+
 import socket
 import threading
 import json
@@ -6,6 +9,7 @@ HOST = '127.0.0.1'
 PORT = 5050
 
 
+# Listen server for incoming messages
 def listen_server(client):
     while True:
         message = client.recv(2048).decode('utf-8')
@@ -16,6 +20,7 @@ def listen_server(client):
             print('Received empty message.')
 
 
+# Send message to server
 def send_message(client):
     while True:
         message = input()
@@ -25,6 +30,7 @@ def send_message(client):
             print('Message cannot be empty. Please try again.')
 
 
+# Send information to intialize user and chat
 def send_to_server(client):
     username = input('Enter your username: ')
     if username != '':
@@ -47,6 +53,7 @@ def send_to_server(client):
     send_message(client)
 
 
+# Select user to chat with in private chat session
 def select_user_to_chat(client):
     receiver = input('Enter the username you want to chat with: ')
     if receiver != '':
